@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <ListPreference
+        android:key="@string/orderBy"
+        android:title="@string/orderTitle"
+        android:entries="@array/orderItems"
+        app:useSimpleSummaryProvider="true"
+        android:entryValues="@array/orderItems"
+        android:defaultValue="@string/newest"
+        android:summary="Filter the News"
+        >
+    </ListPreference>
+</PreferenceScreen>
