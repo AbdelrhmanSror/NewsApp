@@ -17,6 +17,7 @@ import java.util.ArrayList
 
 import android.view.ViewGroup.LayoutParams
 import androidx.core.view.children
+import androidx.core.widget.TextViewCompat
 import com.example.newsApp.ui.NewsListAdapter.ViewHolder.Companion.from
 
 /**
@@ -47,7 +48,7 @@ class NewsListAdapter(private val list: List<NewsModel>?, private val listener: 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list!![position])
         holder.itemView.setOnClickListener { listener.onCardClick(list[position].webUrl) }
-        holder.binding.authorName.setOnClickListener { handleAuthorTextView(holder, list) }
+        holder.binding.authorName.setOnClickListener { HandleAuthorTextView.showAuthorsName(holder, list) }
 
     }
 
@@ -63,13 +64,13 @@ class NewsListAdapter(private val list: List<NewsModel>?, private val listener: 
     }
 
 
-    private companion object {
+     private object HandleAuthorTextView  {
         private fun createAuthorTextView(authors: ArrayList<String>, holder: ViewHolder) {
             for (author in authors) {
                 val textView = TextView(holder.context)
                 val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
                 textView.text = author
-                textView.setTextAppearance(holder.context, R.style.TextAppearance_AppCompat_Light_SearchResult_Subtitle)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Light_SearchResult_Subtitle)
                 textView.layoutParams = params
                 textView.setTextColor(ContextCompat.getColor(holder.context, R.color.white))
                 holder.binding.authorContainer.addView(textView)
@@ -91,7 +92,7 @@ class NewsListAdapter(private val list: List<NewsModel>?, private val listener: 
         //here we create at first time a new text view if the the object fetched from api is containing author names
         // the second time we we check the visibility of text view that was created if it was visible when user click on it then make it invisible
         //else make it visible and so  on
-        fun handleAuthorTextView(holder: ViewHolder, list: List<NewsModel>?) {
+        fun showAuthorsName(holder: ViewHolder, list: List<NewsModel>?) {
             //this list of authors that is existed in the clicked object.
             val authors = list!![holder.adapterPosition].getAuthors()
             //check if there is authors or not the object
