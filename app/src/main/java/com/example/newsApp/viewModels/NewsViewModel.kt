@@ -3,6 +3,7 @@ package com.example.newsApp.viewModels
 import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkRequest
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,8 +42,6 @@ class NewsViewModel(application: Application, private val repository: Repository
             val networkInfo = Objects.requireNonNull(network).activeNetworkInfo
             return networkInfo != null && networkInfo.isConnected
         }
-
-
     fun onBackgroundTaskStarted() {
         _onBackgroundTaskStarted.value = true
     }

@@ -78,15 +78,17 @@ class NewsListAdapter(private val list: List<NewsModel>?, private val listener: 
         }
 
         private fun setAuthorVisibility(authorContainer: LinearLayout) {
-            when {
-                authorContainer.getChildAt(1).visibility == View.VISIBLE -> authorContainer.children.forEach {
-                    it.visibility = View.GONE
+            when (authorContainer.getChildAt(1).visibility == View.VISIBLE ){
+                true-> authorContainer.children.forEach(fun (view:View) {
+                    if(view==authorContainer.getChildAt(0))return
+                    view.visibility = View.GONE
 
-                }
-                else -> authorContainer.children.forEach {
-                    it.visibility = View.VISIBLE
+                })
+                else -> authorContainer.children.forEach(fun (view:View) {
+                    if(view==authorContainer.getChildAt(0))return
+                    view.visibility = View.VISIBLE
 
-                }
+                })
             }
         }
         //here we create at first time a new text view if the the object fetched from api is containing author names

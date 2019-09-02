@@ -14,7 +14,7 @@ class BackgroundTask<T> internal constructor(context: Context, //call back to be
                                              private val observer: NetworkObserver<T>) : AsyncTaskLoader<T>(context) {
     private var mData: T? = null
 
-    class Builder<T> {
+     class Builder<T> {
         private lateinit var observer: NetworkObserver<T>
         private  var manager: LoaderManager?=null
         private lateinit var context: Context
